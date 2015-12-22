@@ -1,6 +1,10 @@
 require "bigdecimal"
 require_relative "item"
 
+#############
+# Exceptions
+#############
+
 class AlreadyEndedError < StandardError
 end
 
@@ -15,6 +19,10 @@ end
 
 class NotYetStartedError < StandardError
 end
+
+########
+# Models
+########
 
 class Auction
   attr_reader :auctioneer, :item, :reserved_price, :bids
@@ -36,6 +44,7 @@ class Auction
   end
 
   def start
+    # Should only be able to start an auction once
     raise AlreadyStartedError unless @start_time.nil?
     @start_time = DateTime.now
   end
@@ -52,6 +61,9 @@ class Auction
   end
 
   def end
+    # Should only be able to end an auction once.
+    # Item linked to auction becomes unavailable.
+    # Auction is labeled either a success or failure.
     raise AlreadyEndedError unless @end_time.nil?
     @end_time = DateTime.now
     @item.available = false

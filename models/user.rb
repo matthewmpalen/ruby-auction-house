@@ -1,6 +1,11 @@
 require "date"
 
+#########
+# Models
+#########
+
 class User
+  # Basic skeleton of a user
   attr_reader :first_name, :last_name, :created_at
 
   def initialize(first_name, last_name)

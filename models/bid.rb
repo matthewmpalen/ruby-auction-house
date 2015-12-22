@@ -1,6 +1,11 @@
 require "bigdecimal"
 
+#########
+# Models
+#########
+
 class Bid
+  # Model which represents a bid on auction
   attr_reader :bidder, :price
 
   def initialize(bidder, price)

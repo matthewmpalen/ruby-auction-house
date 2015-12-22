@@ -203,9 +203,10 @@ class BiddingTestCase < Test::Unit::TestCase
     @auction.start
     bid = Bid.new(@bidder1, 300)
     @auction.accept_bid(bid)
+    @auction.end
 
     assert_equal(false, @auction.success)
-    assert_equal(true, @auction.item.available)
+    assert_equal(false, @auction.item.available)
   end
 
   def test_success_auction
